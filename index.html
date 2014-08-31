@@ -1,79 +1,163 @@
-<!DOCTYPE html>
-<html>
+<!doctype html>
+<html lang="en">
 
-  <head>
-    <meta charset='utf-8'>
-    <meta http-equiv="X-UA-Compatible" content="chrome=1">
-    <meta name="description" content="Assignment-1 : ">
+<head>
+  <title>Hail Taxi !</title>
+  <meta charset="utf-8" />
+</head>
 
-    <link rel="stylesheet" type="text/css" media="screen" href="stylesheets/stylesheet.css">
+<body background ="http://www.hdwallpapers.in/walls/taxi_to_newjersey_1080p-HD.jpg" >
+  <p>
 
-    <title>Assignment-1</title>
-  </head>
+  </P>
+  <h1 style="color: #FFFFFF;"><b>Hail Taxi!</b></h1>
 
-  <body>
 
-    <!-- HEADER -->
-    <div id="header_wrap" class="outer">
-        <header class="inner">
-          <a id="forkme_banner" href="https://github.com/nagaditya/assignment-1">View on GitHub</a>
 
-          <h1 id="project_title">Assignment-1</h1>
-          <h2 id="project_tagline"></h2>
+  <h3 style="color: #FFFFFF;"><b>What is Your taxi preference?</b></h3>
 
-            <section id="downloads">
-              <a class="zip_download_link" href="https://github.com/nagaditya/assignment-1/zipball/master">Download this project as a .zip file</a>
-              <a class="tar_download_link" href="https://github.com/nagaditya/assignment-1/tarball/master">Download this project as a tar.gz file</a>
-            </section>
-        </header>
-    </div>
+  <input type="radio" name="cabtype" value="SMRT">
+  <FONT COLOR="#FFFFFFF">SMRT <img src="http://etc-mysitemyway.s3.amazonaws.com/icons/legacy-previews/icons-256/blue-jelly-icons-transport-travel/037487-blue-jelly-icon-transport-travel-transportation-car2.png" height= "35" width = "35" >
+  <br>
+  <br>
 
-    <!-- MAIN CONTENT -->
-    <div id="main_content_wrap" class="outer">
-      <section id="main_content" class="inner">
-        <h3>
-<a name="welcome-to-github-pages" class="anchor" href="#welcome-to-github-pages"><span class="octicon octicon-link"></span></a>Welcome to GitHub Pages.</h3>
+  <input type="radio" name="cabtype" value="TransCab">Transcab  <img src="http://etc-mysitemyway.s3.amazonaws.com/icons/legacy-previews/icons-256/glossy-silver-icons-transport-travel/038517-glossy-silver-icon-transport-travel-transportation-car2.png" height= "45" width = "45">
+  <br>
+  <br>
 
-<p>This automatic page generator is the easiest way to create beautiful pages for all of your projects. Author your page content here using GitHub Flavored Markdown, select a template crafted by a designer, and publish. After your page is generated, you can check out the new branch:</p>
+  <input type="radio" name="cabtype" value="CityCab">Citycab   <img src= "http://etc-mysitemyway.s3.amazonaws.com/icons/legacy-previews/icons-256/blue-tiedyed-cloth-icons-transport-travel/037796-blue-tiedyed-cloth-icon-transport-travel-transportation-car2.png" height= "35" width = "35">
+  <br>
+  <br>
 
-<pre><code>$ cd your_repo_root/repo_name
-$ git fetch origin
-$ git checkout gh-pages
-</code></pre>
+ <input type="radio" name="cabtype" value="ComfortCab">Comfortcab <img src ="http://etc-mysitemyway.s3.amazonaws.com/icons/legacy-previews/icons-256/glossy-space-icons-transport-travel/038620-glossy-space-icon-transport-travel-transportation-car2.png" height= "35" width = "35">
+  <br>
+  <br>
 
-<p>If you're using the GitHub for Mac, simply sync your repository and you'll see the new branch.</p>
+  <input type="radio" name="cabtype" value="allcabs">All cabs</Font>
+  <br>
 
-<h3>
-<a name="designer-templates" class="anchor" href="#designer-templates"><span class="octicon octicon-link"></span></a>Designer Templates</h3>
+  <p>
+    <input type="submit" value="Find Taxi" onclick="GetMap()">
+  </p>
+  <br>
 
-<p>We've crafted some handsome templates for you to use. Go ahead and continue to layouts to browse through them. You can easily go back to edit your page before publishing. After publishing your page, you can revisit the page generator and switch to another theme. Your Page content will be preserved if it remained markdown format.</p>
 
-<h3>
-<a name="rather-drive-stick" class="anchor" href="#rather-drive-stick"><span class="octicon octicon-link"></span></a>Rather Drive Stick?</h3>
 
-<p>If you prefer to not use the automatic generator, push a branch named <code>gh-pages</code> to your repository to create a page manually. In addition to supporting regular HTML content, GitHub Pages support Jekyll, a simple, blog aware static site generator written by our own Tom Preston-Werner. Jekyll makes it easy to create site-wide headers and footers without having to copy them across every page. It also offers intelligent blog support and other advanced templating features.</p>
 
-<h3>
-<a name="authors-and-contributors" class="anchor" href="#authors-and-contributors"><span class="octicon octicon-link"></span></a>Authors and Contributors</h3>
+  <div id="mapDiv" style="position: relative; width: 800px; height: 600px;"></div>
+  <script type="text/javascript" src="http://ecn.dev.virtualearth.net/mapcontrol/mapcontrol.ashx?v=7.0"></script>
+  <script type="text/javascript">
+    var map = null;
 
-<p>You can <a href="https://github.com/blog/821" class="user-mention">@mention</a> a GitHub username to generate a link to their profile. The resulting <code>&lt;a&gt;</code> element will link to the contributor's GitHub Profile. For example: In 2007, Chris Wanstrath (<a href="https://github.com/defunkt" class="user-mention">@defunkt</a>), PJ Hyett (<a href="https://github.com/pjhyett" class="user-mention">@pjhyett</a>), and Tom Preston-Werner (<a href="https://github.com/mojombo" class="user-mention">@mojombo</a>) founded GitHub.</p>
+    function GetMap(loc) {
 
-<h3>
-<a name="support-or-contact" class="anchor" href="#support-or-contact"><span class="octicon octicon-link"></span></a>Support or Contact</h3>
+      var cred = "AtMZbdrk24VTe6BxGmr0f35_2jjYEa8nYQcUrf7JDwAEVdE7NZemiBdUTY4TtOmP";
+      map = new Microsoft.Maps.Map(document.getElementById("mapDiv"), {
+        credentials: cred
+      });
 
-<p>Having trouble with Pages? Check out the documentation at <a href="http://help.github.com/pages">http://help.github.com/pages</a> or contact <a href="mailto:support@github.com">support@github.com</a> and we’ll help you sort it out.</p>
-      </section>
-    </div>
+      // Define the pushpin location
+      var loc = new Microsoft.Maps.Location(1.297607, 103.849513);
+      var loc1 = new Microsoft.Maps.Location(1.297629, 103.849889);
+      var loc2 = new Microsoft.Maps.Location(1.297092, 103.849013);
+      var loc3 = new Microsoft.Maps.Location(1.298280, 103.849086);
+      var loc4 = new Microsoft.Maps.Location(1.296835, 103.849185);
+      //var pushpinOptions = {icon: 'http://www2.psd100.com/icon/2013/08/2301/Push-pin-small-icon-0823145902.png', width: 50, height: 60};
+      // var pushpinOptions2 = {icon: "http://etc-mysitemyway.s3.amazonaws.com/icons/legacy-previews/icons-256/glossy-silver-icons-transport-travel/038517-glossy-silver-icon-transport-travel-transportation-car2.png", height: 45 ,width: 45};
+      // var pushpinOptions3 = {icon: "http://etc-mysitemyway.s3.amazonaws.com/icons/legacy-previews/icons-256/blue-tiedyed-cloth-icons-transport-travel/037796-blue-tiedyed-cloth-icon-transport-travel-transportation-car2.png" height: 45 width: 35};
+      // var pushpinOptions4 = {icon: "http://etc-mysitemyway.s3.amazonaws.com/icons/legacy-previews/icons-256/glossy-space-icons-transport-travel/038620-glossy-space-icon-transport-travel-transportation-car2.png", hieght: 35,  width: 35};
+      // User pin
+      var ypin = new Microsoft.Maps.Pushpin(loc, {
+        icon: 'http://i.msdn.microsoft.com/dynimg/IC488534.png', width: 50, height:50
+      });
+      map.entities.push(ypin);
 
-    <!-- FOOTER  -->
-    <div id="footer_wrap" class="outer">
-      <footer class="inner">
-        <p class="copyright">Assignment-1 maintained by <a href="https://github.com/nagaditya">nagaditya</a></p>
-        <p>Published with <a href="http://pages.github.com">GitHub Pages</a></p>
-      </footer>
-    </div>
 
-    
+      // Taxi pins
+      var pin1 = new Microsoft.Maps.Pushpin(loc1);
+      map.entities.push(pin1);
+      var pin2 = new Microsoft.Maps.Pushpin(loc2);
+      map.entities.push(pin2);
+      var pin3 = new Microsoft.Maps.Pushpin(loc3);
+      map.entities.push(pin3);
+      var pin4 = new Microsoft.Maps.Pushpin(loc4);
+      map.entities.push(pin4);
+      map.setView({
+        center: loc,
+        zoom: 19
+      });
 
-  </body>
+      if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(locateSuccess, locateFail);
+      } else {
+        alert('I\'m sorry, but Geolocation is not supported in your current browser. Have you tried running this demo in IE9?');
+      }
+
+    }
+
+
+
+
+     // Successful geolocation
+    function locateSuccess(loc) {
+      // Set the user's location
+      var userLocation = new Microsoft.Maps.Location(1.297607, 103.849513);
+      // Zoom in on user's location on map
+      map.setView({
+        center: userLocation,
+        zoom: 18
+      });
+      // Draw circle of area where user is located
+      var locationArea = drawCircle(userLocation);
+      map.entities.push(locationArea);
+    }
+     // Unsuccessful geolocation
+    function locateFail(geoPositionError) {
+      switch (geoPositionError.code) {
+        case 0: // UNKNOWN_ERROR
+          alert('An unknown error occurred, sorry');
+          break;
+        case 1: // PERMISSION_DENIED
+          alert('Permission to use Geolocation was denied');
+          break;
+        case 2: // POSITION_UNAVAILABLE
+          alert('Couldn\'t find you...');
+          break;
+        case 3: // TIMEOUT
+          alert('The Geolocation request took too long and timed out');
+          break;
+        default:
+      }
+
+    }
+
+     // Draw blue circle on top of user's location
+    function drawCircle(loc) {
+      var radius = 100;
+      var R = 6378137;
+      var lat = (loc.latitude * Math.PI) / 180;
+      var lon = (loc.longitude * Math.PI) / 180;
+      var d = parseFloat(radius) / R;
+      var locs = new Array();
+      for (x = 0; x <= 360; x++) {
+        var p = new Microsoft.Maps.Location();
+        brng = x * Math.PI / 180;
+        p.latitude = Math.asin(Math.sin(lat) * Math.cos(d) + Math.cos(lat) * Math.sin(d) * Math.cos(brng));
+        p.longitude = ((lon + Math.atan2(Math.sin(brng) * Math.sin(d) * Math.cos(lat), Math.cos(d) - Math.sin(lat) * Math.sin(p.latitude))) * 180) / Math.PI;
+        p.latitude = (p.latitude * 180) / Math.PI;
+        locs.push(p);
+      }
+      return new Microsoft.Maps.Polygon(locs, {
+        fillColor: new Microsoft.Maps.Color(10, 0, 0, 255),
+        strokeColor: new Microsoft.Maps.Color(255, 0, 0, 255)
+      });
+
+    }
+  </script>
+
+
+
+
+</body>
+
 </html>
